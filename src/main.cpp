@@ -11,4 +11,5 @@ int main(int argc, char **argv) {
     stream.seekg(0);
     stream >> x;
     std::cout << x;
+
 }
