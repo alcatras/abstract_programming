@@ -3,6 +3,6 @@ project(abstract_programming)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES src/main.cpp)
+set(SOURCE_FILES src/main.cpp src/file/AbstractReader.h src/file/RecordReader.h)
 
 add_executable(abstract_programming ${SOURCE_FILES})
