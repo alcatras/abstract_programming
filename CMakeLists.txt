@@ -13,7 +13,18 @@ set(SOURCE_FILES
         src/file/DataWriter.h
         src/file/StringReader.h
         src/file/BinaryReader.h
+        src/model/data_type/DataType.h
+        src/model/data_type/IntDataType.h
+        src/model/data_type/StringDataType.h
+        src/model/data_type/RealDataType.h
+        src/model/data_type/BinaryDataType.h
+        src/model/block/Block.h
+        src/model/table/TableAttribute.h
+        src/model/table/TableDefinition.h
+        src/model/db_schema/DBSchema.h
+        src/parser/DBSchemaParser.h
         src/Consts.h
 )
+set()
 
 add_executable(abstract_programming ${SOURCE_FILES})
