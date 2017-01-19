@@ -7,6 +7,7 @@
 #include "AbstractReader.h"
 
 class StringReader : public AbstractReader<std::string> {
+public:
     std::string read(std::istream& istream, long position, long length = 0) override {
         istream.seekg(position);
 

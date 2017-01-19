@@ -6,6 +6,7 @@
 #include "AbstractReader.h"
 
 class RecordReader : public AbstractReader{
+public:
     char* read(std::istream& istream, long position, long length) override {
 //        istream.seekg(0).seekg(position);
         istream.seekg(position);
