@@ -12,14 +12,6 @@ struct TableAttribute {
         this->name = name;
         this->type = type;
     }
-
-    std::string getName(){
-        return this->name;
-    }
-
-    DataType* getType() {
-        return this->type;
-    }
 };
 
 

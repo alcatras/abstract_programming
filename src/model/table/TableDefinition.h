@@ -17,18 +17,6 @@ struct TableDefinition {
         this->indexPosition = indexPosition;
     }
 
-    std::string getName() {
-        return this->name;
-    }
-
-    long getIndexPosition() {
-        return this->indexPosition;
-    }
-
-    std::vector<TableAttribute*> getAttributes(){
-        return this->attributes;
-    }
-
     void createTableAttribute(std::string name, DataType* type) {
         this->attributes.push_back(new TableAttribute(name, type));
     }

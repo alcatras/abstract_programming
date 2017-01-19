@@ -13,6 +13,7 @@ private:
     static constexpr const char* ATTRIBUTETYPE = "ATTRIBUTE_TYPE";
     static constexpr const char* INDEXPOSITION = "INDEX_POSITION";
     static constexpr const char* SEPARATOR = ";";
+    static constexpr const char* LINESEPARATOR = "\n";
 
 public:
     static std::string parseDBSchemaToString(DBSchema *schema) {
@@ -25,16 +26,16 @@ public:
 
         for (auto table : schema->tables) {
             result << TABLENAME << SEPARATOR;
-            result << table->getName() << SEPARATOR;
+            result << table->name << SEPARATOR;
             result << INDEXPOSITION << SEPARATOR;
-            result << table->getIndexPosition() << SEPARATOR;
+            result << table->indexPosition << SEPARATOR;
 
 
-            for(auto attribute : table->getAttributes()) {
+            for(auto attribute : table->attributes) {
                 result << ATTRIBUTENAME << SEPARATOR;
-                result << attribute->getName() << SEPARATOR;
+                result << attribute->name << SEPARATOR;
                 result << ATTRIBUTETYPE << SEPARATOR;
-                result << attribute->getType()->name() << SEPARATOR;
+                result << attribute->type->name() << SEPARATOR;
             }
         }
 
