@@ -4,9 +4,10 @@
 
 #include <istream>
 
+template <typename T = char*>
 class AbstractReader {
 public:
-    virtual char * read(int position, int length, std::istream istream, std::ostream ostream) = 0;
+    virtual T read(std::istream& istream, long position, long length) = 0;
 };
 
 
