@@ -19,18 +19,18 @@ public:
 
     class Node {
     public:
-        typedef std::function<long(std::string&,QueryData**)> predicate_type;
+        typedef std::function<long(std::string &, QueryData **)> predicate_type;
 
-        QueryData** data;
+        QueryData **data;
 
-        std::vector<Node*> neighbors;
+        std::vector<Node *> neighbors;
         predicate_type predicate;
 
         Node(const predicate_type &predicate) :
                 neighbors(), predicate(predicate), data() {
         }
 
-        void addNeighbour(Node* node) {
+        void addNeighbour(Node *node) {
             node->data = data;
             neighbors.emplace_back(node);
         }
@@ -40,30 +40,30 @@ private:
     Node root;
 
 public:
-    EvaluationTree() : root([] (std::string&, QueryData**) { return true; }) {
-        root.data = new QueryData*;
+    EvaluationTree() : root([](std::string &, QueryData **) { return true; }) {
+        root.data = new QueryData *;
     }
 
     ~EvaluationTree() {
         delete root.data;
     }
 
-    Node* getRootNode() {
+    Node *getRootNode() {
         return &root;
     }
 
-    void evaluate(std::string& dql) {
+    void evaluate(std::string &dql) {
         long pos = 0;
-        Node* currentNode = &root;
+        Node *currentNode = &root;
 
         do {
             bool found = false;
-            for(auto n: currentNode->neighbors) {
+            for (auto n: currentNode->neighbors) {
                 pos = n->predicate(dql, n->data);
 
                 if (pos > 0) {
 
-                    while(isspace(dql[pos]))
+                    while (isspace(dql[pos]))
                         pos++;
 
                     dql = std::move(dql.substr((unsigned long) pos, dql.size() - pos));
@@ -72,10 +72,10 @@ public:
                     break;
                 }
             }
-            if(!found) {
+            if (!found) {
                 break;
             }
-        } while(pos >= 0);
+        } while (pos >= 0);
     }
 };
 

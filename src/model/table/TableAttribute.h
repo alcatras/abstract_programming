@@ -6,9 +6,9 @@
 
 struct TableAttribute {
     std::string name;
-    DataType* type;
+    DataType *type;
 
-    TableAttribute(std::string name, DataType* type){
+    TableAttribute(std::string name, DataType *type) {
         this->name = name;
         this->type = type;
     }

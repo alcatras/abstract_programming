@@ -11,24 +11,24 @@
 
 class EvaluationNodeFactory {
 
-    std::vector<EvaluationTree::Node*> nodes;
+    std::vector<EvaluationTree::Node *> nodes;
 
 public:
-    typedef std::function<void(std::string&,long,QueryData**)> collector_type;
+    typedef std::function<void(std::string &, long, QueryData **)> collector_type;
 
     EvaluationNodeFactory() : nodes() {};
 
     ~EvaluationNodeFactory() {
-        for(int i = 0; i < nodes.size(); ++i) {
+        for (int i = 0; i < nodes.size(); ++i) {
             delete nodes[i];
         }
         nodes.clear();
     }
 
-    EvaluationTree::Node* createKeywordNode(const char* keyword) {
-        EvaluationTree::Node* node = new EvaluationTree::Node([=] (std::string& s, QueryData** data) {
-            if(s.find(keyword) == 0) {
-                return (long)strlen(keyword);
+    EvaluationTree::Node *createKeywordNode(const char *keyword) {
+        EvaluationTree::Node *node = new EvaluationTree::Node([=](std::string &s, QueryData **data) {
+            if (s.find(keyword) == 0) {
+                return (long) strlen(keyword);
             }
             return -1l;
         });
@@ -36,10 +36,10 @@ public:
         return node;
     }
 
-    EvaluationTree::Node* createKeywordNode(const char* keyword, collector_type& collector) {
-        EvaluationTree::Node* node = new EvaluationTree::Node([=] (std::string& s, QueryData** data) {
+    EvaluationTree::Node *createKeywordNode(const char *keyword, collector_type &collector) {
+        EvaluationTree::Node *node = new EvaluationTree::Node([=](std::string &s, QueryData **data) {
             long length = strlen(keyword);
-            if(s.find(keyword) == 0) {
+            if (s.find(keyword) == 0) {
                 collector(s, length, data);
                 return length;
             }
@@ -49,10 +49,10 @@ public:
         return node;
     }
 
-    EvaluationTree::Node* createWordNode(collector_type& collector) {
-        EvaluationTree::Node* node = new EvaluationTree::Node([=] (std::string& s, QueryData** data) {
+    EvaluationTree::Node *createWordNode(collector_type &collector) {
+        EvaluationTree::Node *node = new EvaluationTree::Node([=](std::string &s, QueryData **data) {
             long pos = 0;
-            while(s[pos] >= 'A' && s[pos] <= 'z' && pos < s.size())
+            while (s[pos] >= 'A' && s[pos] <= 'z' && pos < s.size())
                 pos++;
             collector(s, pos, data);
             return pos;
@@ -61,11 +61,11 @@ public:
         return node;
     }
 
-    EvaluationTree::Node* createOperatorNode(std::vector<std::string> ops) {
-        EvaluationTree::Node* node = new EvaluationTree::Node([=] (std::string& s, QueryData** data) {
-            for(auto it = ops.begin(); it != ops.end(); ++it) {
-                if(s.find(*it) == 0) {
-                    return (long)it->length();
+    EvaluationTree::Node *createOperatorNode(std::vector<std::string> ops) {
+        EvaluationTree::Node *node = new EvaluationTree::Node([=](std::string &s, QueryData **data) {
+            for (auto it = ops.begin(); it != ops.end(); ++it) {
+                if (s.find(*it) == 0) {
+                    return (long) it->length();
                 }
             }
             return -1l;
@@ -74,10 +74,10 @@ public:
         return node;
     }
 
-    EvaluationTree::Node* createOperatorNode(std::vector<std::string> ops, collector_type& collector) {
-        EvaluationTree::Node* node = new EvaluationTree::Node([=] (std::string& s, QueryData** data) {
-            for(auto it = ops.begin(); it != ops.end(); ++it) {
-                if(s.find(*it) == 0) {
+    EvaluationTree::Node *createOperatorNode(std::vector<std::string> ops, collector_type &collector) {
+        EvaluationTree::Node *node = new EvaluationTree::Node([=](std::string &s, QueryData **data) {
+            for (auto it = ops.begin(); it != ops.end(); ++it) {
+                if (s.find(*it) == 0) {
                     long pos = it->length();
                     collector(s, pos, data);
                     return pos;
@@ -89,9 +89,9 @@ public:
         return node;
     }
 
-    EvaluationTree::Node* createEndNode(collector_type& collector) {
-        EvaluationTree::Node* node = new EvaluationTree::Node([=] (std::string& s, QueryData** data) {
-            if(s.empty()) {
+    EvaluationTree::Node *createEndNode(collector_type &collector) {
+        EvaluationTree::Node *node = new EvaluationTree::Node([=](std::string &s, QueryData **data) {
+            if (s.empty()) {
                 collector(s, -1, data);
                 return -1l;
             }

@@ -8,7 +8,7 @@
 
 class StringReader : public AbstractReader<std::string> {
 public:
-    std::string read(std::istream& istream, long position, long length = 0) override {
+    std::string read(std::istream &istream, long position, long length = 0) override {
         istream.seekg(position);
 
         std::stringstream buffer;
@@ -16,7 +16,7 @@ public:
         do {
             istream >> c;
             buffer << c;
-        }while (c != '\0');
+        } while (c != '\0');
 
         std::string s;
         buffer >> s;

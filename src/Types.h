@@ -12,7 +12,7 @@ struct Type {
 
 template<typename T>
 struct type_traits {
-    static constexpr const char* name = "default";
+    static constexpr const char *name = "default";
     static constexpr long size = 0;
 };
 
@@ -22,7 +22,7 @@ struct BinaryType {
 
 template<>
 struct type_traits<BinaryType> {
-    static constexpr const char* name = "binary";
+    static constexpr const char *name = "binary";
     static constexpr long size = sizeof(long);
 };
 
@@ -32,7 +32,7 @@ struct IntegerType {
 
 template<>
 struct type_traits<IntegerType> {
-    static constexpr const char* name = "integer";
+    static constexpr const char *name = "integer";
     static constexpr long size = sizeof(long);
 };
 
@@ -42,7 +42,7 @@ struct RealType {
 
 template<>
 struct type_traits<RealType> {
-    static constexpr const char* name = "real";
+    static constexpr const char *name = "real";
     static constexpr long size = sizeof(double);
 };
 
@@ -52,7 +52,7 @@ struct StringType {
 
 template<>
 struct type_traits<StringType> {
-    static constexpr const char* name = "string";
+    static constexpr const char *name = "string";
     static constexpr long size = sizeof(long);
 };
 

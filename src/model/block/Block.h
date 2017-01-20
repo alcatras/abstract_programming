@@ -5,9 +5,9 @@
 struct Block {
     int position;
     int length;
-    void* data;
+    void *data;
 
-    Block(int position, int length, void* data) {
+    Block(int position, int length, void *data) {
         this->position = position;
         this->length = length;
         this->data = data;
@@ -21,7 +21,7 @@ struct Block {
         return this->length;
     }
 
-    void* getData() {
+    void *getData() {
         return this->data;
     }
 };

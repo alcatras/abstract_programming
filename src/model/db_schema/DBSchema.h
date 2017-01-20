@@ -8,19 +8,19 @@ class DBSchema {
 public:
     std::string name;
     long indexPosition;
-    std::vector<TableDefinition*> tables;
+    std::vector<TableDefinition *> tables;
 
     DBSchema(std::string name, long indexPosition) {
         this->name = name;
         this->indexPosition = indexPosition;
     }
 
-    void createTable(TableDefinition* table) {
+    void createTable(TableDefinition *table) {
         tables.push_back(table);
     }
 
-    TableDefinition* getTableByName(std::string name) {
-        for(auto table : this->tables) {
+    TableDefinition *getTableByName(std::string name) {
+        for (auto table : this->tables) {
             if (table->name == name)
                 return table;
         }

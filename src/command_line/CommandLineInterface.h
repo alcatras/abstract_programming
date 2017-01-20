@@ -14,7 +14,7 @@ class CommandLineInterface {
 
 public:
     CommandLineInterface() : evaluationTree(), evaluationNodeFactory() {
-        EvaluationTree::Node* root = evaluationTree.getRootNode();
+        EvaluationTree::Node *root = evaluationTree.getRootNode();
 
         et::branch_create(root, evaluationNodeFactory);
         et::branch_delete(root, evaluationNodeFactory);
@@ -43,15 +43,15 @@ public:
     void loop() {
         print_greetings();
 
-        while(true) {
+        while (true) {
             std::cout << "> ";
 
             std::string query;
             std::getline(std::cin, query, '\n');
 
-            if(query.find("exit") == 0) {
+            if (query.find("exit") == 0) {
                 break;
-            } else if(query.find("help") == 0) {
+            } else if (query.find("help") == 0) {
                 print_help();
             } else {
                 evaluationTree.evaluate(query);
@@ -78,7 +78,7 @@ private:
 
         std::cout << s;
 
-        for(int i = 0; i < spaces; ++i) {
+        for (int i = 0; i < spaces; ++i) {
             std::cout << " ";
         }
 
