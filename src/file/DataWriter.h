@@ -9,15 +9,15 @@ using namespace consts;
 
 class DataWriter {
 
-    // zapis do plikow binarnych w zaleznosci od typu
+    // TODO jedna metoda?
 
 public:
-    void write(long position, long length, const char* data, std::ostream& ostream){
-        ostream.write(data, length);
+    void write(std::ostream& ostream, long position, long length, const char* data){
+        ostream.write(data, length).flush();
     }
 
-    void writeWithLength(long position, long length, const char* data, std::ostream& ostream){
-        ostream.write(reinterpret_cast<char*>(&length), chars_in_long).write(data, length);
+    void writeWithLength(std::ostream& ostream, long position, long length, const char* data){
+        ostream.write(reinterpret_cast<char*>(&length), chars_in_long).write(data, length).flush();
     }
 
 };

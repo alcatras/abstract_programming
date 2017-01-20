@@ -5,24 +5,12 @@
 struct Block {
     int position;
     int length;
-    void* data;
+    const char* data;
 
     Block(int position, int length, void* data) {
         this->position = position;
         this->length = length;
         this->data = data;
-    }
-
-    int getPosition() {
-        return this->position;
-    }
-
-    int getLength() {
-        return this->length;
-    }
-
-    void* getData() {
-        return this->data;
     }
 };
 

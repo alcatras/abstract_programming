@@ -3,16 +3,22 @@
 
 
 #include <iostream>
+#include <memory>
 #include "AbstractReader.h"
 
-class RecordReader : public AbstractReader{
+class SimpleReader : public AbstractReader{
+
 public:
-    char* read(std::istream& istream, long position, long length) override {
+    long position;
+    long length;
+    std::unique_ptr<char> data;
+
+    void read(std::istream& istream) override {
 //        istream.seekg(0).seekg(position);
         istream.seekg(position);
         char buffer[length];
         istream.read(buffer, length);
-        return buffer;
+        data = std::unique_ptr<char>(buffer);
     }
 
 };

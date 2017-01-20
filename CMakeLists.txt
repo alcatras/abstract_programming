@@ -8,10 +8,11 @@ set(SOURCE_FILES
         src/command_line/CommandLine.h
         src/command_line/Query.h
         src/file/AbstractReader.h
-        src/file/RecordReader.h
+        src/file/SimpleReader.h
         src/file/DataWriter.h
         src/file/StringReader.h
         src/file/BinaryReader.h
+        src/file/BinaryFileHandler.h
         src/model/data_type/DataType.h
         src/model/data_type/IntDataType.h
         src/model/data_type/StringDataType.h
@@ -23,6 +24,6 @@ set(SOURCE_FILES
         src/model/db_schema/DBSchema.h
         src/parser/DBSchemaParser.h
         src/Consts.h
-)
+        src/file/DataReader.h src/file/Allocator.h src/accessors/DataAccessor.h src/accessors/IndexAccessor.h)
 
 add_executable(abstract_programming ${SOURCE_FILES})

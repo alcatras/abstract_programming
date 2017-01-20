@@ -4,7 +4,7 @@
 
 namespace consts{
 
-    constexpr int chars_in_long = sizeof(long)/ sizeof(char);
+    constexpr int chars_in_long = sizeof(long)/sizeof(char);
 
 }
 

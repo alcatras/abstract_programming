@@ -3,12 +3,16 @@
 
 #include <string>
 #include <sstream>
+#include <memory>
 
 #include "AbstractReader.h"
 
-class StringReader : public AbstractReader<std::string> {
+class StringReader : public AbstractReader<std::pair<long, std::unique_ptr<char>>> {
 public:
-    std::string read(std::istream& istream, long position, long length = 0) override {
+    long position;
+    std::string data;
+
+    void read(std::istream& istream) override {
         istream.seekg(position);
 
         std::stringstream buffer;
@@ -18,9 +22,7 @@ public:
             buffer << c;
         }while (c != '\0');
 
-        std::string s;
-        buffer >> s;
-        return s;
+        buffer >> data;
     }
 };
 

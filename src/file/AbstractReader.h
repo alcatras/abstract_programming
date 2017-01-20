@@ -7,7 +7,9 @@
 template <typename T = char*>
 class AbstractReader {
 public:
-    virtual T read(std::istream& istream, long position, long length) = 0;
+    virtual void read(std::istream& istream) = 0;
+//    virtual T getData() = 0;
+
 };
 
 
