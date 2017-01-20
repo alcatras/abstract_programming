@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 #include "TableAttribute.h"
-#include "../data_type/DataType.h"
+#include "../Types.h"
 
 struct TableDefinition {
     std::string name;
@@ -17,7 +17,7 @@ struct TableDefinition {
         this->indexPosition = indexPosition;
     }
 
-    void createTableAttribute(std::string name, DataType *type) {
+    void createTableAttribute(std::string name, Type *type) {
         this->attributes.push_back(new TableAttribute(name, type));
     }
 };

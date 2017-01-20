@@ -4,7 +4,8 @@
 
 #include <istream>
 
-template<typename T = char *>
+//TODO nie uzywamy template nigdzie :P
+//template<typename T = char *>
 class AbstractReader {
 public:
     virtual void read(std::istream& istream) = 0;

@@ -5,7 +5,7 @@
 class Allocator {
 public:
     long getPosition(long length){
-        return 0;
+        return 0; //TODO zrobic :D
     };
 };
 

@@ -9,7 +9,7 @@
 
 using namespace consts;
 
-class BinaryReader : public AbstractReader<std::pair<long, std::unique_ptr<char>>> {
+class BinaryReader : public AbstractReader { //<std::pair<long, std::unique_ptr<char>>> {
 public:
     long position;
     long length;

@@ -3,7 +3,7 @@
 
 
 #include <sstream>
-#include "../model/db_schema/DBSchema.h"
+#include "../model/DBSchema.h"
 
 class DBSchemaParser {
 private:

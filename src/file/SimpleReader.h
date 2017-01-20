@@ -6,7 +6,7 @@
 #include <memory>
 #include "AbstractReader.h"
 
-class SimpleReader : public AbstractReader{
+class SimpleReader : public AbstractReader {
 
 public:
     long position;
@@ -19,6 +19,7 @@ public:
         char buffer[length];
         istream.read(buffer, length);
         data = std::unique_ptr<char>(buffer);
+        std::cout << "test\n"; //TODO usunac
     }
 
 };

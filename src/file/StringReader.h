@@ -7,7 +7,7 @@
 #include <memory>
 #include "AbstractReader.h"
 
-class StringReader : public AbstractReader<std::pair<long, std::unique_ptr<char>>> {
+class StringReader : public AbstractReader { //<std::pair<long, std::unique_ptr<char>>> {
 public:
     long position;
     std::string data;

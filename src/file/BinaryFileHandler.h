@@ -3,11 +3,9 @@
 
 
 #include <fstream>
-#include <ntsecapi.h>
 #include "DataWriter.h"
-#include "DataReader.h"
 #include "Allocator.h"
-#include "../model/block/Block.h"
+//#include "AbstractReader.h"
 #include "SimpleReader.h"
 #include "StringReader.h"
 #include "BinaryReader.h"

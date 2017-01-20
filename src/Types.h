@@ -16,7 +16,7 @@ struct type_traits {
     static constexpr long size = 0;
 };
 
-struct BinaryType {
+struct BinaryType : Type {
     long ptr;
 };
 
@@ -26,7 +26,7 @@ struct type_traits<BinaryType> {
     static constexpr long size = sizeof(long);
 };
 
-struct IntegerType {
+struct IntegerType : Type {
     long value;
 };
 
@@ -36,7 +36,7 @@ struct type_traits<IntegerType> {
     static constexpr long size = sizeof(long);
 };
 
-struct RealType {
+struct RealType : Type {
     double value;
 };
 
@@ -46,7 +46,7 @@ struct type_traits<RealType> {
     static constexpr long size = sizeof(double);
 };
 
-struct StringType {
+struct StringType : Type {
     long ptr;
 };
 

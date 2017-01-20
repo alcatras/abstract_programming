@@ -2,7 +2,7 @@
 #define ABSTRACT_PROGRAMMING_DBSCHEMA_H
 
 
-#include "../table/TableDefinition.h"
+#include "TableDefinition.h"
 
 class DBSchema {
 public:

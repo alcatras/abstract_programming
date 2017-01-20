@@ -2,13 +2,13 @@
 #define ABSTRACT_PROGRAMMING_TABLEATTRIBUTE_H
 
 #include <string>
-#include "../data_type/DataType.h"
+#include "../Types.h"
 
 struct TableAttribute {
     std::string name;
-    DataType *type;
+    Type *type;
 
-    TableAttribute(std::string name, DataType *type) {
+    TableAttribute(std::string name, Type *type) {
         this->name = name;
         this->type = type;
     }

@@ -27,7 +27,7 @@ public:
     }
 
     void write(long position, long index){
-
+        //TODO zrobic
     }
 };
 
