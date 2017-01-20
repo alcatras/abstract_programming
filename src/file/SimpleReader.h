@@ -14,7 +14,7 @@ public:
     std::unique_ptr<char> data;
 
     void read(std::istream& istream) override {
-//        istream.seekg(0).seekg(position);
+//         istream.seekg(0).seekg(position);
         istream.seekg(position);
         char buffer[length];
         istream.read(buffer, length);

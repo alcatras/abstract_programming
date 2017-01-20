@@ -1,10 +1,10 @@
 #ifndef ABSTRACT_PROGRAMMING_STRINGREADER_H
 #define ABSTRACT_PROGRAMMING_STRINGREADER_H
 
+
 #include <string>
 #include <sstream>
 #include <memory>
-
 #include "AbstractReader.h"
 
 class StringReader : public AbstractReader<std::pair<long, std::unique_ptr<char>>> {
@@ -20,7 +20,7 @@ public:
         do {
             istream >> c;
             buffer << c;
-        }while (c != '\0');
+        } while (c != '\0');
 
         buffer >> data;
     }

@@ -7,7 +7,7 @@ struct Block {
     int length;
     const char* data;
 
-    Block(int position, int length, void* data) {
+    Block(int position, int length, char* data) {
         this->position = position;
         this->length = length;
         this->data = data;

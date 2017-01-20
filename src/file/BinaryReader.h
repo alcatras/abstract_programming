@@ -1,10 +1,12 @@
 #ifndef ABSTRACT_PROGRAMMING_BINARYREADER_H
 #define ABSTRACT_PROGRAMMING_BINARYREADER_H
 
+
 #include <memory>
 #include <utility>
 #include "AbstractReader.h"
 #include "../Consts.h"
+
 using namespace consts;
 
 class BinaryReader : public AbstractReader<std::pair<long, std::unique_ptr<char>>> {
@@ -15,7 +17,7 @@ public:
 
     void read(std::istream& istream) override {
         istream.seekg(position);
-        istream.read(reinterpret_cast<char*>(&length), chars_in_long);
+        istream.read(reinterpret_cast<char*>(&length), CHARS_IN_LONG);
 
         char* buffer = new char[length];
         istream.read(buffer, length);

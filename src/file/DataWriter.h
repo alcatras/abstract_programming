@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include "../Consts.h"
+
 using namespace consts;
 
 class DataWriter {
@@ -17,7 +18,7 @@ public:
     }
 
     void writeWithLength(std::ostream& ostream, long position, long length, const char* data){
-        ostream.write(reinterpret_cast<char*>(&length), chars_in_long).write(data, length).flush();
+        ostream.write(reinterpret_cast<char*>(&length), CHARS_IN_LONG).write(data, length).flush();
     }
 
 };

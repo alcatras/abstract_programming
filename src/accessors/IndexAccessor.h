@@ -19,7 +19,7 @@ public:
         std::vector<long> result;
 
         long* pointer = reinterpret_cast<long*>(reader.data.get());
-        for (; pointer < pointer + reader.length/chars_in_long; ++pointer){
+        for (; pointer < pointer + reader.length / CHARS_IN_LONG; ++pointer){
             result.emplace_back(pointer);
         }
 

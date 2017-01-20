@@ -5,6 +5,7 @@
 #include <iostream>
 #include <memory>
 #include "../Consts.h"
+
 using namespace consts;
 
 class DataReader {
