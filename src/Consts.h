@@ -2,10 +2,8 @@
 #define ABSTRACT_PROGRAMMING_CONSTS_H
 
 
-namespace consts{
-
-    constexpr int chars_in_long = sizeof(long)/ sizeof(char);
-
+namespace consts {
+    constexpr int CHARS_IN_LONG = sizeof(long)/ sizeof(char);
 }
 
 
