@@ -5,7 +5,6 @@
 #ifndef ABSTRACT_PROGRAMMING_TYPES_H
 #define ABSTRACT_PROGRAMMING_TYPES_H
 
-
 #include "file/AbstractReader.h"
 #include "file/SimpleReader.h"
 #include "file/StringReader.h"
@@ -74,6 +73,5 @@ struct type_traits<StringType> {
         return new StringReader(size);
     };
 };
-
 
 #endif //ABSTRACT_PROGRAMMING_TYPES_H

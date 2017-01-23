@@ -1,7 +1,6 @@
 #ifndef ABSTRACT_PROGRAMMING_BINARYFILEHANDLER_H
 #define ABSTRACT_PROGRAMMING_BINARYFILEHANDLER_H
 
-
 #include <fstream>
 #include "DataWriter.h"
 #include "Allocator.h"
@@ -35,6 +34,5 @@ public:
     }
 
 };
-
 
 #endif //ABSTRACT_PROGRAMMING_BINARYFILEHANDLER_H

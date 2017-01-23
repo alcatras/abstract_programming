@@ -1,7 +1,6 @@
 #ifndef ABSTRACT_PROGRAMMING_RECORDREADER_H
 #define ABSTRACT_PROGRAMMING_RECORDREADER_H
 
-
 #include <iostream>
 #include <memory>
 #include "AbstractReader.h"
@@ -25,6 +24,5 @@ public:
     }
 
 };
-
 
 #endif //ABSTRACT_PROGRAMMING_RECORDREADER_H

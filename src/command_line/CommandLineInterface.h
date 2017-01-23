@@ -5,7 +5,6 @@
 #ifndef ABSTRACT_PROGRAMMING_COMMANDLINEINTERFACE_H
 #define ABSTRACT_PROGRAMMING_COMMANDLINEINTERFACE_H
 
-
 #include "evaluation.h"
 
 class CommandLineInterface {
@@ -125,6 +124,5 @@ private:
         std::cout << std::endl;
     };
 };
-
 
 #endif //ABSTRACT_PROGRAMMING_COMMANDLINEINTERFACE_H

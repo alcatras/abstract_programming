@@ -1,7 +1,6 @@
 #ifndef ABSTRACT_PROGRAMMING_TABLEDEFINITION_H
 #define ABSTRACT_PROGRAMMING_TABLEDEFINITION_H
 
-
 #include <string>
 #include <vector>
 #include "TableAttribute.h"
@@ -21,6 +20,5 @@ struct TableDefinition {
         this->attributes.push_back(new TableAttribute(name, type));
     }
 };
-
 
 #endif //ABSTRACT_PROGRAMMING_TABLEDEFINITION_H

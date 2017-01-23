@@ -1,7 +1,6 @@
 #ifndef ABSTRACT_PROGRAMMING_DATAWRITER_H
 #define ABSTRACT_PROGRAMMING_DATAWRITER_H
 
-
 #include <iostream>
 #include <vector>
 #include "../Consts.h"

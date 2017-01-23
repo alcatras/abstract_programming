@@ -1,7 +1,6 @@
 #ifndef ABSTRACT_PROGRAMMING_DBSCHEMA_H
 #define ABSTRACT_PROGRAMMING_DBSCHEMA_H
 
-
 #include "TableDefinition.h"
 
 class DBSchema {
@@ -28,6 +27,5 @@ public:
     }
 
 };
-
 
 #endif //ABSTRACT_PROGRAMMING_DBSCHEMA_H

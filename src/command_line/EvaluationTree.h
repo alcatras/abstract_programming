@@ -5,7 +5,6 @@
 #ifndef ABSTRACT_PROGRAMMING_EVEALUATION_TREE_H
 #define ABSTRACT_PROGRAMMING_EVEALUATION_TREE_H
 
-
 #include <vector>
 #include <functional>
 #include <utility>
@@ -78,6 +77,5 @@ public:
         } while (pos >= 0);
     }
 };
-
 
 #endif //ABSTRACT_PROGRAMMING_TREE_H

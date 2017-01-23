@@ -14,5 +14,4 @@ struct TableAttribute {
     }
 };
 
-
 #endif //ABSTRACT_PROGRAMMING_TABLEATTRIBUTE_H

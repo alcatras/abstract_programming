@@ -1,7 +1,6 @@
 #ifndef ABSTRACT_PROGRAMMING_DATAACCESSOR_H
 #define ABSTRACT_PROGRAMMING_DATAACCESSOR_H
 
-
 #include <vector>
 #include <string>
 #include "../file/BinaryFileHandler.h"
@@ -24,7 +23,6 @@ public:
                 file_handler.read(reader, *row);
 
 
-
             }
         }
     }
@@ -36,6 +34,5 @@ public:
     };
 
 };
-
 
 #endif //ABSTRACT_PROGRAMMING_DATAACCESSOR_H

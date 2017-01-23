@@ -1,7 +1,6 @@
 #ifndef ABSTRACT_PROGRAMMING_DBSCHEMAPARSER_H
 #define ABSTRACT_PROGRAMMING_DBSCHEMAPARSER_H
 
-
 #include <sstream>
 #include "../model/DBSchema.h"
 
@@ -30,7 +29,6 @@ public:
             result << INDEXPOSITION << SEPARATOR;
             result << table->indexPosition << SEPARATOR;
 
-
             for (auto attribute : table->attributes) {
                 result << ATTRIBUTENAME << SEPARATOR;
                 result << attribute->name << SEPARATOR;
@@ -42,6 +40,5 @@ public:
         return result.str();
     }
 };
-
 
 #endif //ABSTRACT_PROGRAMMING_DBSCHEMAPARSER_H

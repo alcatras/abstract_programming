@@ -1,7 +1,6 @@
 #ifndef PROJECT_ABSTRACTREADER_H
 #define PROJECT_ABSTRACTREADER_H
 
-
 #include <istream>
 #include <memory>
 
@@ -16,6 +15,5 @@ public:
         ptr = std::unique_ptr<char>(buffer);
     }
 };
-
 
 #endif //PROJECT_ABSTRACTREADER_H

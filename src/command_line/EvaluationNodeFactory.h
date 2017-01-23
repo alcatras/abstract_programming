@@ -5,7 +5,6 @@
 #ifndef ABSTRACT_PROGRAMMING_EVALUATIONNODEFACTORY_H
 #define ABSTRACT_PROGRAMMING_EVALUATIONNODEFACTORY_H
 
-
 #include "EvaluationTree.h"
 #include <cstring>
 
@@ -101,6 +100,5 @@ public:
         return node;
     }
 };
-
 
 #endif //ABSTRACT_PROGRAMMING_EVALUATIONNODEFACTORY_H

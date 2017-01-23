@@ -1,7 +1,6 @@
 #ifndef ABSTRACT_PROGRAMMING_BLOCK_H
 #define ABSTRACT_PROGRAMMING_BLOCK_H
 
-
 struct Block {
     int position;
     int length;
@@ -13,6 +12,5 @@ struct Block {
         this->data = data;
     }
 };
-
 
 #endif //ABSTRACT_PROGRAMMING_BLOCK_H

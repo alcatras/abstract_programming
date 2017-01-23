@@ -1,7 +1,6 @@
 #ifndef ABSTRACT_PROGRAMMING_INDEXACCESSOR_H
 #define ABSTRACT_PROGRAMMING_INDEXACCESSOR_H
 
-
 #include <fstream>
 #include "../file/BinaryFileHandler.h"
 
@@ -30,6 +29,5 @@ public:
         //TODO zrobic
     }
 };
-
 
 #endif //ABSTRACT_PROGRAMMING_INDEXACCESSOR_H

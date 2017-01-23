@@ -1,7 +1,6 @@
 #ifndef ABSTRACT_PROGRAMMING_BINARYREADER_H
 #define ABSTRACT_PROGRAMMING_BINARYREADER_H
 
-
 #include <memory>
 #include <utility>
 #include "AbstractReader.h"
@@ -32,6 +31,5 @@ public:
         data = std::unique_ptr<char>(buffer);
     }
 };
-
 
 #endif //ABSTRACT_PROGRAMMING_BINARYREADER_H

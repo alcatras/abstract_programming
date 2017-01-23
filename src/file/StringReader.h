@@ -1,7 +1,6 @@
 #ifndef ABSTRACT_PROGRAMMING_STRINGREADER_H
 #define ABSTRACT_PROGRAMMING_STRINGREADER_H
 
-
 #include <string>
 #include <sstream>
 #include <memory>
