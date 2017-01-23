@@ -12,11 +12,11 @@ namespace et {
     class QueryData {
     };
 
-    struct TableQueryData : QueryData {
+    struct TableName : QueryData {
         std::string table_name;
     };
 
-    struct CreateTableQueryData : TableQueryData {
+    struct TableNameWithAttributes : TableName {
         typedef std::pair<std::string, std::string> attribute_type;
         std::vector<attribute_type> attributes;
     };
@@ -27,11 +27,12 @@ namespace et {
         std::string op;
     };
 
-    struct WhereData {
+    struct TableNameWithWhere : TableName {
         std::vector<predicate> predicates;
     };
 
-    struct DeleteRecordsQueryData : TableQueryData, WhereData {
+    struct TableNameWithValues : TableName {
+        std::vector<std::string> values;
     };
 }
 

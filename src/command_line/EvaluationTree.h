@@ -29,7 +29,7 @@ public:
                 neighbors(), predicate(predicate), data() {
         }
 
-        void addNeighbour(Node *node) {
+        void addNext(Node *node) {
             node->data = data;
             neighbors.emplace_back(node);
         }

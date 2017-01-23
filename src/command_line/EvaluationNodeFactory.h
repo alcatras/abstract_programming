@@ -37,8 +37,10 @@ public:
 
     EvaluationTree::Node *createKeywordNode(const char *keyword, collector_type &collector) {
         EvaluationTree::Node *node = new EvaluationTree::Node([=](std::string &s, QueryData **data) {
+            std::cout << keyword << "in ";
             long length = strlen(keyword);
             if (s.find(keyword) == 0) {
+                std::cout << "dupa in";
                 collector(s, length, data);
                 return length;
             }
@@ -51,7 +53,7 @@ public:
     EvaluationTree::Node *createWordNode(collector_type &collector) {
         EvaluationTree::Node *node = new EvaluationTree::Node([=](std::string &s, QueryData **data) {
             long pos = 0;
-            while (s[pos] >= 'A' && s[pos] <= 'z' && pos < s.size())
+            while ((s[pos] >= '0' && s[pos] <= '9') || (s[pos] >= 'A' && s[pos] <= 'z' && pos < s.size()))
                 pos++;
             collector(s, pos, data);
             return pos;
