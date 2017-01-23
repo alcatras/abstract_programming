@@ -17,6 +17,8 @@ public:
 
         et::branch_create(root, evaluationNodeFactory);
         et::branch_delete(root, evaluationNodeFactory);
+        et::branch_select(root, evaluationNodeFactory);
+        et::branch_insert(root, evaluationNodeFactory);
 
 //        std::string create = "create table dupa (string name, string surname, integer age)";
 //        evaluationTree.evaluate(create);
@@ -32,6 +34,14 @@ public:
 //
 //        std::string delete_records = "delete from dupa where (name = ahmed and surname = duda)";
 //        evaluationTree.evaluate(delete_records);
+//        std::cout << "-----" << std::endl;
+//
+//        std::string select = "select from dupa where (name = ahmed)";
+//        evaluationTree.evaluate(select);
+//        std::cout << "-----" << std::endl;
+//
+//        std::string insert = "insert into dupa(jurek, owsiek, 666)";
+//        evaluationTree.evaluate(insert);
 //        std::cout << "-----" << std::endl;
     }
 
