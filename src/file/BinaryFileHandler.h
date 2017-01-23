@@ -5,10 +5,7 @@
 #include <fstream>
 #include "DataWriter.h"
 #include "Allocator.h"
-//#include "AbstractReader.h"
-#include "SimpleReader.h"
-#include "StringReader.h"
-#include "BinaryReader.h"
+#include "AbstractReader.h"
 
 class BinaryFileHandler {
 
@@ -20,14 +17,21 @@ class BinaryFileHandler {
 public:
     BinaryFileHandler(std::string file){
         fstream.open(file);
+        std::cout << "czy plik '" << file << "' otwarty " << fstream.is_open();
+        std::fstream test("DataFile");
+        std::cout << "czy plik '" << "test" << "' otwarty " << fstream.is_open();
     }
 
-    void write(DataWriter& writer, long length, char* data){
-        writer.write(fstream, allocator.getPosition(length), length, data);
+    //destruktor => fstream.close(file);
+
+    void read(AbstractReader* reader, long position){
+        reader->read(fstream, position);
     }
 
-    void read(AbstractReader& reader){
-        reader.read(fstream);
+    long write(DataWriter& writer, long length, const char* data){
+        long position = allocator.getPosition(length);
+        writer.write(fstream, position, length, data);
+        return position;
     }
 
 };

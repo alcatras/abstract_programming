@@ -7,13 +7,19 @@
 #include <memory>
 #include "AbstractReader.h"
 
-class StringReader : public AbstractReader { //<std::pair<long, std::unique_ptr<char>>> {
+class StringReader : public AbstractReader {
 public:
-    long position;
+    long ptr_length;
     std::string data;
 
-    void read(std::istream& istream) override {
-        istream.seekg(position);
+    StringReader(long ptr_length) : ptr_length(ptr_length){};
+
+    void read(std::istream& istream, long ptr_position) override {
+        std::unique_ptr<char> ptr;
+//        readDirectly(istream, ptr_position, ptr_length, ptr);
+
+        long string_position = *ptr;
+        istream.seekg(string_position);
 
         std::stringstream buffer;
         char c;

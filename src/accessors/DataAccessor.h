@@ -3,8 +3,11 @@
 
 
 #include <vector>
+#include <string>
+#include "../file/BinaryFileHandler.h"
 #include "../file/BinaryFileHandler.h"
 #include "../model/TableAttribute.h"
+#include "../model/Block.h"
 
 class DataAccessor {
 
@@ -14,17 +17,22 @@ public:
     DataAccessor() : file_handler("DataFile") {}
 
     void read(std::vector<TableAttribute *> attributes, std::vector<long> index){
-        for (auto record = index.begin(); record < index.end(); record++){
-            for (auto attribute = attributes.begin(); attribute < attributes.end(); attribute++){
-                SimpleReader reader;
-                file_handler.read(reader);
-                //TODO
+        for (auto row = index.begin(); row != index.end(); row++){
+            for (auto attribute = attributes.begin(); attribute != attributes.end(); attribute++){
+
+                AbstractReader *reader = &(*(*attribute)->type->getReader());
+                file_handler.read(reader, *row);
+
+
 
             }
         }
     }
 
-    void write() {
+    void write(Block block) {
+
+        DataWriter writer;
+        long position = file_handler.write(writer, block.length, block.data);
     };
 
 };

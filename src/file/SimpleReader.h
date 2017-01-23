@@ -9,17 +9,19 @@
 class SimpleReader : public AbstractReader {
 
 public:
-    long position;
     long length;
     std::unique_ptr<char> data;
 
-    void read(std::istream& istream) override {
-//         istream.seekg(0).seekg(position);
-        istream.seekg(position);
-        char buffer[length];
-        istream.read(buffer, length);
-        data = std::unique_ptr<char>(buffer);
-        std::cout << "test\n"; //TODO usunac
+    SimpleReader(long length) : length(length){};
+
+    void read(std::istream& istream, long position) override {
+//        readDirectly(istream, position, length, data);
+////         istream.seekg(0).seekg(position);
+//        istream.seekg(position);
+//        char buffer[length];
+//        istream.read(buffer, length);
+//        data = std::unique_ptr<char>(buffer);
+//        std::cout << "test\n"; //TODO usunac
     }
 
 };

@@ -6,9 +6,9 @@
 
 struct TableAttribute {
     std::string name;
-    Type *type;
+    type_traits<IntegerType> *type;
 
-    TableAttribute(std::string name, Type *type) {
+    TableAttribute(std::string name, type_traits<IntegerType> *type) {
         this->name = name;
         this->type = type;
     }
