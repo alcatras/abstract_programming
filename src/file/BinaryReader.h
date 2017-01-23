@@ -13,14 +13,13 @@ public:
     long ptr_length;
     long position;
     long length;
-    std::unique_ptr<char> data;
+    char *data;
 
     BinaryReader(long ptr_length) : ptr_length(ptr_length){};
 
     void read(std::istream& istream, long ptr_position) override {
 
-        std::unique_ptr<char> ptr;
-//        readDirectly(istream, ptr_position, ptr_length, ptr);
+        char *ptr = readDirectly(istream, ptr_position, ptr_length);
         position = *ptr;
 
         istream.seekg(position);
@@ -28,8 +27,13 @@ public:
 
         char* buffer = new char[length];
         istream.read(buffer, length);
-        data = std::unique_ptr<char>(buffer);
+        data = buffer;
     }
+
+    long getLength() override {
+        return length;
+    }
+
 };
 
 #endif //ABSTRACT_PROGRAMMING_BINARYREADER_H

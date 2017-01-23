@@ -15,21 +15,24 @@ class BinaryFileHandler {
 
 public:
     BinaryFileHandler(std::string file){
-        fstream.open(file);
+//        fstream.open(file, std::ios_base::out);
+        fstream.open(file, std::ios_base::binary | std::ios_base::in | std::ios_base::out);
         std::cout << "czy plik '" << file << "' otwarty " << fstream.is_open();
-        std::fstream test("DataFile");
-        std::cout << "czy plik '" << "test" << "' otwarty " << fstream.is_open();
     }
 
-    //destruktor => fstream.close(file);
+    ~BinaryFileHandler(){
+        fstream.close();
+    }
 
-    void read(AbstractReader* reader, long position){
+    void read(std::unique_ptr<AbstractReader>& reader, long position){
         reader->read(fstream, position);
     }
 
     long write(DataWriter& writer, long length, const char* data){
-        long position = allocator.getPosition(length);
+        long position = allocator.getPosition(fstream, length);
         writer.write(fstream, position, length, data);
+        writer.write(std::cout, position, length, data);
+        fstream.flush();
         return position;
     }
 

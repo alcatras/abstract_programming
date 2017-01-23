@@ -3,14 +3,23 @@
 
 #include <string>
 #include "../Types.h"
+#include "AbstractAttribute.h"
 
-struct TableAttribute {
+template<typename T>
+class TableAttribute : public AbstractAttribute {
+public:
     std::string name;
-    type_traits<IntegerType> *type;
 
-    TableAttribute(std::string name, type_traits<IntegerType> *type) {
+    TableAttribute(std::string name) {
         this->name = name;
-        this->type = type;
+    }
+
+    std::unique_ptr<AbstractReader> getReader() override {
+        return T::reader_type();
+    }
+
+    std::string getName() override {
+        return name;
     }
 };
 

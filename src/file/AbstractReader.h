@@ -7,13 +7,14 @@
 class AbstractReader {
 public:
     virtual void read(std::istream& istream, long position) = 0;
+    virtual long getLength() = 0;
 
-    void readDirectly(std::istream& istream, long position, long length, std::unique_ptr<char> ptr) {
+    char* readDirectly(std::istream& istream, long position, long length) {
         istream.seekg(position);
-        char buffer[length];
+        char *buffer = new char[length];
         istream.read(buffer, length);
-        ptr = std::unique_ptr<char>(buffer);
-    }
+        return buffer;
+    };
 };
 
 #endif //PROJECT_ABSTRACTREADER_H

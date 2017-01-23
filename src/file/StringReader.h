@@ -14,8 +14,7 @@ public:
     StringReader(long ptr_length) : ptr_length(ptr_length){};
 
     void read(std::istream& istream, long ptr_position) override {
-        std::unique_ptr<char> ptr;
-//        readDirectly(istream, ptr_position, ptr_length, ptr);
+        char *ptr = readDirectly(istream, ptr_position, ptr_length);
 
         long string_position = *ptr;
         istream.seekg(string_position);
@@ -28,6 +27,10 @@ public:
         } while (c != '\0');
 
         buffer >> data;
+    }
+
+    long getLength() override {
+        return 0;
     }
 };
 

@@ -3,6 +3,8 @@
 
 #include <fstream>
 #include "../file/BinaryFileHandler.h"
+#include "../file/BinaryReader.h"
+#include "../Types.h"
 
 class IndexAccessor {
     BinaryFileHandler file_handler;
@@ -11,17 +13,15 @@ public:
     IndexAccessor() : file_handler("IndexFile"){}
 
     std::vector<long> getIndex(long position) {
-        BinaryReader reader;
-        reader.position = position;
-        file_handler.read(reader);
+        std::unique_ptr<AbstractReader> reader = std::unique_ptr(type_traits<BinaryType>::reader_type());
+        file_handler.read(reader, position);
 
         std::vector<long> result;
 
-        long* pointer = reinterpret_cast<long*>(reader.data.get());
-        for (; pointer < pointer + reader.length / CHARS_IN_LONG; ++pointer){
+        long* pointer = (*reader);
+        for (; pointer < pointer + reader.get()->getLength() / CHARS_IN_LONG; ++pointer){
             result.emplace_back(pointer);
         }
-
         return result;
     }
 

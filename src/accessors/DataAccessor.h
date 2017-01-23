@@ -15,11 +15,14 @@ class DataAccessor {
 public:
     DataAccessor() : file_handler("DataFile") {}
 
-    void read(std::vector<TableAttribute *> attributes, std::vector<long> index){
+    void read(std::vector<AbstractAttribute*> attributes, std::vector<long> index){
         for (auto row = index.begin(); row != index.end(); row++){
             for (auto attribute = attributes.begin(); attribute != attributes.end(); attribute++){
 
-                AbstractReader *reader = &(*(*attribute)->type->getReader());
+                std::unique_ptr<AbstractReader> reader = (*attribute)->getReader();
+//                std::unique_ptr<AbstractReader> reader = (*attribute)->type::reader_type();
+//                typename (*attribute)->type::reader_type *reader = new typename (*attribute)->type::reader_type;
+//                AbstractReader *reader = &(*(*attribute)->type->getReader());
                 file_handler.read(reader, *row);
 
 

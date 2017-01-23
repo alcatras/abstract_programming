@@ -1,7 +1,3 @@
-//
-// Created by kamil on 20.01.17.
-//
-
 #ifndef ABSTRACT_PROGRAMMING_TYPES_H
 #define ABSTRACT_PROGRAMMING_TYPES_H
 
@@ -18,7 +14,9 @@ template<typename T>
 struct type_traits {
     static constexpr const char *name = "default";
     static constexpr long size = 0;
-
+    static std::unique_ptr<AbstractReader> reader_type(){
+        return std::unique_ptr<AbstractReader>(new SimpleReader(size));
+    }
 };
 
 struct BinaryType : Type {
@@ -29,10 +27,10 @@ struct BinaryType : Type {
 template<>
 struct type_traits<BinaryType> {
     static constexpr const char *name = "binary";
-    static constexpr long size = sizeof(long);
-    AbstractReader *getReader(){
-        return new BinaryReader(size);
-    };
+    static constexpr long size = sizeof(long long);
+    static std::unique_ptr<AbstractReader> reader_type(){
+        return std::unique_ptr<AbstractReader>(new BinaryReader(size));
+    }
 };
 
 struct IntegerType : Type {
@@ -42,10 +40,10 @@ struct IntegerType : Type {
 template<>
 struct type_traits<IntegerType> {
     static constexpr const char *name = "integer";
-    static constexpr long size = sizeof(long);
-    AbstractReader *getReader(){
-        return new SimpleReader(size);
-    };
+    static constexpr long size = sizeof(long long);
+    static std::unique_ptr<AbstractReader> reader_type(){
+        return std::unique_ptr<AbstractReader>(new SimpleReader(size));
+    }
 };
 
 struct RealType : Type {
@@ -56,9 +54,9 @@ template<>
 struct type_traits<RealType> {
     static constexpr const char *name = "real";
     static constexpr long size = sizeof(double);
-    AbstractReader *getReader(){
-        return new SimpleReader(size);
-    };
+    static std::unique_ptr<AbstractReader> reader_type(){
+        return std::unique_ptr<AbstractReader>(new SimpleReader(size));
+    }
 };
 
 struct StringType : Type {
@@ -68,10 +66,10 @@ struct StringType : Type {
 template<>
 struct type_traits<StringType> {
     static constexpr const char *name = "string";
-    static constexpr long size = sizeof(long);
-    AbstractReader *getReader(){
-        return new StringReader(size);
-    };
+    static constexpr long size = sizeof(long long);
+    static std::unique_ptr<AbstractReader> reader_type(){
+        return std::unique_ptr<AbstractReader>(new StringReader(size));
+    }
 };
 
 #endif //ABSTRACT_PROGRAMMING_TYPES_H

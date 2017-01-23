@@ -9,7 +9,7 @@
 struct TableDefinition {
     std::string name;
     long indexPosition;
-    std::vector<TableAttribute *> attributes;
+    std::vector<AbstractAttribute*> attributes;
 
     TableDefinition(std::string name, long indexPosition) {
         this->name = name;
@@ -17,7 +17,7 @@ struct TableDefinition {
     }
 
     void createTableAttribute(std::string name, Type *type) {
-        this->attributes.push_back(new TableAttribute(name, type));
+        this->attributes.push_back(new TableAttribute(name));
     }
 };
 
