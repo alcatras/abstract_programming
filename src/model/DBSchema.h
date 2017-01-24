@@ -5,25 +5,20 @@
 
 class DBSchema {
 public:
-    std::string name;
-    long indexPosition;
-    std::vector<TableDefinition *> tables;
+    std::vector<std::unique_ptr<TableDefinition>> tables;
 
-    DBSchema(std::string name, long indexPosition) {
-        this->name = name;
-        this->indexPosition = indexPosition;
-    }
+    DBSchema() : tables() {}
 
-    void createTable(TableDefinition *table) {
+    void addTable(std::unique_ptr<TableDefinition> &table) {
         tables.push_back(table);
     }
 
-    TableDefinition *getTableByName(std::string name) {
-        for (auto table : this->tables) {
+    std::unique_ptr<TableDefinition> getTableByName(std::string &name) {
+        for (auto table : tables) {
             if (table->name == name)
                 return table;
         }
-        return 0;
+        throw -1;
     }
 
 };

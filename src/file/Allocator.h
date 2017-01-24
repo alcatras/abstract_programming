@@ -1,14 +1,24 @@
-#ifndef ABSTRACT_PROGRAMMING_ALOCATOR_H
-#define ABSTRACT_PROGRAMMING_ALOCATOR_H
+//
+// Created by kamil on 24.01.17.
+//
+
+#ifndef ABSTRACT_PROGRAMMING_ALLOCATOR_H
+#define ABSTRACT_PROGRAMMING_ALLOCATOR_H
+
+
+#include <fstream>
 
 class Allocator {
 public:
-    long getPosition(std::fstream &fstream, long length){
+    void free(long address, long size) {
+
+    }
+
+    long allocate(std::fstream &fstream, long size) {
         fstream.seekg(0, fstream.end);
-        long x = fstream.tellg();
-        return x;
-//        return 0; //TODO zrobic :D
-    };
+        return fstream.tellg();
+    }
 };
 
-#endif //ABSTRACT_PROGRAMMING_ALOCATOR_H
+
+#endif //ABSTRACT_PROGRAMMING_ALLOCATOR_H

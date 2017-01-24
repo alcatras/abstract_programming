@@ -3,21 +3,18 @@
 
 #include <string>
 #include <vector>
-#include "TableAttribute.h"
-#include "../Types.h"
+#include "Attribute.h"
 
 struct TableDefinition {
     std::string name;
     long indexPosition;
-    std::vector<AbstractAttribute*> attributes;
+    std::vector<std::unique_ptr<AbstractAttribute>> attributes;
 
-    TableDefinition(std::string name, long indexPosition) {
-        this->name = name;
-        this->indexPosition = indexPosition;
-    }
+    TableDefinition(const std::string &name, long indexPosition)
+            : name(name), indexPosition(indexPosition), attributes() {}
 
-    void createTableAttribute(std::string name, Type *type) {
-        this->attributes.push_back(new TableAttribute(name));
+    void addTableAttribute(std::unique_ptr<AbstractAttribute> &attribute) {
+        attributes.push_back(attribute);
     }
 };
 
