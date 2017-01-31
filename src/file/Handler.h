@@ -90,18 +90,17 @@ public:
 template<typename Z>
 class ValueHandler : public Handler<Z> {
 public:
-    ValueHandler(long address, long size) : Handler(address, size) {}
+    ValueHandler(long address, long size) : Handler<Z>(address, size) {}
 
     void read(std::fstream &istream) override {
-        Z *d = reinterpret_cast<long *>(readNBytes(istream, address, sizeof(Z) / sizeof(char)));
+        Z *d = reinterpret_cast<Z *>(readNBytes(istream, this->address, sizeof(Z) / sizeof(char)));
 
-        data = *d;
-        delete d;
+        this->data = *d;
     }
 
     long write(std::fstream &ostream, Allocator &allocator) override {
-        writeNBytes(ostream, address, reinterpret_cast<char *>(&data), sizeof(Z));
-        return address;
+        writeNBytes(ostream, this->address, reinterpret_cast<char *>(&this->data), sizeof(Z));
+        return this->address;
     }
 
     void setData(Z data) {

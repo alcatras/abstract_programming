@@ -7,22 +7,29 @@
 
 
 #include "file/FileHandler.h"
+#include "parser/TableHandler.h"
 
 class DatabaseContext {
     FileHandler indexFile;
     FileHandler dataFile;
 
+    TableHandler tableHandler;
+
 public:
-    DatabaseContext() : indexFile("index.bin"), dataFile("data.bin") {
+    DatabaseContext() : indexFile("index.bin"), dataFile("data.bin"), tableHandler(indexFile){
 
     }
 
-    const FileHandler &getIndexFile() const {
+    FileHandler &getIndexFile() {
         return indexFile;
     }
 
-    const FileHandler &getDataFile() const {
+    FileHandler &getDataFile() {
         return dataFile;
+    }
+
+    TableHandler &getTableHandler() {
+        return tableHandler;
     }
 };
 

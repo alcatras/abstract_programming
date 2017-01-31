@@ -47,15 +47,17 @@ namespace et {
         reinterpret_cast<T *>(*data)->predicates.back().rhs = s.substr(0, l);
     };
 
-    void branch_create(EvaluationTree::Node *root, EvaluationNodeFactory &factory, DatabaseContext &context) {
+    void branch_create(EvaluationTree::Node *root, EvaluationNodeFactory &factory, DatabaseContext *context) {
 
         EvaluationNodeFactory::collector_type end_collector = [&](std::string &s, long l, QueryData **data) {
             TableNameWithAttributes *create_data = reinterpret_cast<TableNameWithAttributes *>(*data);
 
-            std::cout << "create table\ntable name: " << create_data->table_name << std::endl;
-            for (int i = 0; i < create_data->attributes.size(); ++i) {
-                std::cout << create_data->attributes[i].first << " " << create_data->attributes[i].second << std::endl;
-            }
+            context->getTableHandler().createTable(*create_data);
+
+//            std::cout << "create table\ntable name: " << create_data->table_name << std::endl;
+//            for (int i = 0; i < create_data->attributes.size(); ++i) {
+//                std::cout << create_data->attributes[i].first << " " << create_data->attributes[i].second << std::endl;
+//            }
             delete *data;
         };
 
@@ -109,7 +111,7 @@ namespace et {
         return kw_rpar;
     }
 
-    void branch_delete(EvaluationTree::Node *root, EvaluationNodeFactory &factory, DatabaseContext &context) {
+    void branch_delete(EvaluationTree::Node *root, EvaluationNodeFactory &factory, DatabaseContext *context) {
 
         EvaluationNodeFactory::collector_type end_table_collector = [&](std::string &s, long l, QueryData **data) {
             TableName *delete_data = reinterpret_cast<TableName *>(*data);
@@ -156,7 +158,7 @@ namespace et {
         where->addNext(end_rec);
     }
 
-    void branch_select(EvaluationTree::Node *root, EvaluationNodeFactory &factory, DatabaseContext &context) {
+    void branch_select(EvaluationTree::Node *root, EvaluationNodeFactory &factory, DatabaseContext *context) {
         EvaluationNodeFactory::collector_type end_collector = [&](std::string &s, long l, QueryData **data) {
             TableNameWithWhere *select_data = reinterpret_cast<TableNameWithWhere *>(*data);
 
@@ -183,7 +185,7 @@ namespace et {
         where->addNext(end);
     }
 
-    void branch_insert(EvaluationTree::Node *root, EvaluationNodeFactory &factory, DatabaseContext &context) {
+    void branch_insert(EvaluationTree::Node *root, EvaluationNodeFactory &factory, DatabaseContext *context) {
 
         EvaluationNodeFactory::collector_type end_collector = [&](std::string &s, long l, QueryData **data) {
             TableNameWithValues *insert_data = reinterpret_cast<TableNameWithValues *>(*data);

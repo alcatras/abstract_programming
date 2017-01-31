@@ -10,11 +10,14 @@ struct TableDefinition {
     long indexPosition;
     std::vector<std::unique_ptr<AbstractAttribute>> attributes;
 
+    TableDefinition() : attributes() {
+    }
+
     TableDefinition(const std::string &name, long indexPosition)
             : name(name), indexPosition(indexPosition), attributes() {}
 
-    void addTableAttribute(std::unique_ptr<AbstractAttribute> &attribute) {
-        attributes.push_back(attribute);
+    void addTableAttribute(std::unique_ptr<AbstractAttribute> attribute) {
+        attributes.push_back(std::move(attribute));
     }
 };
 

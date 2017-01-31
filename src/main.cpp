@@ -4,6 +4,6 @@
 int main(int argc, char **argv) {
     DatabaseContext context;
 
-    CommandLineInterface cmd(context);
+    CommandLineInterface cmd(&context);
     cmd.loop();
 }

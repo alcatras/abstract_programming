@@ -12,10 +12,8 @@ class CommandLineInterface {
     EvaluationNodeFactory evaluationNodeFactory;
     EvaluationTree evaluationTree;
 
-    DatabaseContext context;
-
 public:
-    CommandLineInterface(DatabaseContext &context) : context(context), evaluationTree(), evaluationNodeFactory() {
+    CommandLineInterface(DatabaseContext *context) : evaluationTree(), evaluationNodeFactory() {
         EvaluationTree::Node *root = evaluationTree.getRootNode();
 
         et::branch_create(root, evaluationNodeFactory, context);

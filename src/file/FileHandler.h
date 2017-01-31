@@ -7,7 +7,7 @@
 
 
 #include <fstream>
-#include <bits/unique_ptr.h>
+#include <memory>
 #include "Allocator.h"
 #include "DataTypeHandler.h"
 
