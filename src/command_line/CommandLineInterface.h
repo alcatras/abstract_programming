@@ -6,19 +6,22 @@
 #define ABSTRACT_PROGRAMMING_COMMANDLINEINTERFACE_H
 
 #include "evaluation.h"
+#include "../DatabaseContext.h"
 
 class CommandLineInterface {
     EvaluationNodeFactory evaluationNodeFactory;
     EvaluationTree evaluationTree;
 
+    DatabaseContext context;
+
 public:
-    CommandLineInterface() : evaluationTree(), evaluationNodeFactory() {
+    CommandLineInterface(DatabaseContext &context) : context(context), evaluationTree(), evaluationNodeFactory() {
         EvaluationTree::Node *root = evaluationTree.getRootNode();
 
-        et::branch_create(root, evaluationNodeFactory);
-        et::branch_delete(root, evaluationNodeFactory);
-        et::branch_select(root, evaluationNodeFactory);
-        et::branch_insert(root, evaluationNodeFactory);
+        et::branch_create(root, evaluationNodeFactory, context);
+        et::branch_delete(root, evaluationNodeFactory, context);
+        et::branch_select(root, evaluationNodeFactory, context);
+        et::branch_insert(root, evaluationNodeFactory, context);
 
 //        std::string create = "create table dupa (string name, string surname, integer age)";
 //        evaluationTree.evaluate(create);
