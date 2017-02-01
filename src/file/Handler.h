@@ -19,7 +19,7 @@ typedef std::vector<long> index_type;
 
 template<typename T>
 class Handler : public DataTypeHandler {
-protected:
+public: //bylo protected wiec mozna zrobic gettery
     long address;
     long size;
     T data;
@@ -78,7 +78,9 @@ public:
         for (auto it: data) {
             writeNBytes(ostream, reinterpret_cast<char *>(&it), sizeof(long));
         }
-
+        /* TODO czy tutaj nie trzeba dopelniac jakimis pustymi znakami (longami)?
+         bo jak bedziemy miec size 5 capacity 8 to allocator nic nie wie o tych 8 i nam da adres zaraz po tych 5
+         i potem dodajac 6 nadpiszemy dane  */
         return address;
     }
 

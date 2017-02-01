@@ -195,14 +195,22 @@ namespace et {
                 std::cout << *it << std::endl;
             }
 
-
             std::unique_ptr<TableDefinition> table = context->getTableHandler().getTableByName(s);
-            DataTypeHandler* indexHandler = new IndexHandler((*table).indexPosition);
 
-            auto writer = std::unique_ptr<DataTypeHandler>(indexHandler);
-            long address = context->getIndexFile().write(writer);
+            auto index_handler = std::unique_ptr<DataTypeHandler>(new IndexHandler((*table).indexPosition));
+            auto index_file = context->getIndexFile();
+            auto data_file = context->getDataFile();
 
-            context->getDataFile();
+            for (int i = 0; i < (*table).attributes.size(); ++i){
+                auto attr_handler = std::unique_ptr<DataTypeHandler>((*(*table).attributes.at(i)).getHandler());
+                std::string attr_value = insert_data->values.at(i);
+                (*attr_handler).setData(attr_value);
+                long address = data_file.write(attr_handler);   //TODO czy index nie mial przechowywac adresu poczatku wiersza? po co nam adresy kazdego pola w bazie
+            }
+
+            index_file.read(index_handler);
+            (*index_handler).addIndex(address);
+            (*table).indexPosition = context->getIndexFile().write(index_handler);
 
             delete *data;
         };

@@ -12,7 +12,6 @@
 class DatabaseContext {
     FileHandler indexFile;
     FileHandler dataFile;
-
     TableHandler tableHandler;
 
 public:
