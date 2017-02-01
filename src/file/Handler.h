@@ -33,7 +33,7 @@ public:
 };
 
 class IndexHandler : public Handler<index_type> {
-    long capacity;
+    long capacity = 0;
 public:
     IndexHandler(long address) : Handler(address, 0) {}
 

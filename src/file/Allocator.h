@@ -16,6 +16,7 @@ public:
 
     long allocate(std::fstream &fstream, long size) {
         fstream.seekg(0, fstream.end);
+        std::cout << fstream.tellg();
         return fstream.tellg();
     }
 };

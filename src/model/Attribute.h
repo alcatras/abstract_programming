@@ -13,7 +13,7 @@ public:
     std::string name;
     std::string type_name;
 
-    AbstractAttribute() : name(""), type_name("xx") {
+    AbstractAttribute() : name(""), type_name("") {
     }
 };
 

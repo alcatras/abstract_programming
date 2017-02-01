@@ -194,6 +194,16 @@ namespace et {
             for (auto it = insert_data->values.begin(); it != insert_data->values.end(); ++it) {
                 std::cout << *it << std::endl;
             }
+
+
+            std::unique_ptr<TableDefinition> table = context->getTableHandler().getTableByName(s);
+            DataTypeHandler* indexHandler = new IndexHandler((*table).indexPosition);
+
+            auto writer = std::unique_ptr<DataTypeHandler>(indexHandler);
+            long address = context->getIndexFile().write(writer);
+
+            context->getDataFile();
+
             delete *data;
         };
 

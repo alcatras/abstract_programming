@@ -104,6 +104,10 @@ public:
         }
         stream.close();
     }
+
+    std::unique_ptr<TableDefinition> getTableByName(std::string &table_name){
+        return std::move(tables.at(table_name));
+    }
 };
 
 
