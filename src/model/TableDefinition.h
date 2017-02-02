@@ -7,7 +7,7 @@
 
 struct TableDefinition {
     std::string name;
-    long indexPosition;
+    long indexPosition = -1;
     std::vector<std::unique_ptr<AbstractAttribute>> attributes;
 
     TableDefinition() : attributes() {

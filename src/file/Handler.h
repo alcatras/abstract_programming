@@ -9,8 +9,11 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
-#include "DataTypeHandler.h"
 #include "../Consts.h"
+#include "DataTypeHandler.h"
+
+template<typename T>
+class TableAttribute;
 
 using namespace consts;
 
@@ -58,10 +61,9 @@ public:
 
     long write(std::fstream &ostream, Allocator &allocator) override {
         if (capacity <= data.size()) {
+            unsigned long initSize = (data.size() + 2) * sizeof(long);
 
-            long initSize = (data.size() + 2) * sizeof(long);
-
-            for (int i = 1 << sizeof(long) * 8 - 1;; i >>= 1) {
+            for (unsigned i = 1 << sizeof(long) * 8 - 1;; i >>= 1) {
                 if (initSize & i) {
                     i <<= 1;
                     allocator.free(address, size);
@@ -78,10 +80,19 @@ public:
         for (auto it: data) {
             writeNBytes(ostream, reinterpret_cast<char *>(&it), sizeof(long));
         }
-        /* TODO czy tutaj nie trzeba dopelniac jakimis pustymi znakami (longami)?
-         bo jak bedziemy miec size 5 capacity 8 to allocator nic nie wie o tych 8 i nam da adres zaraz po tych 5
-         i potem dodajac 6 nadpiszemy dane  */
+        unsigned char padding[4] = {0xff, 0xff, 0xff, 0xff};
+        for (int j = data.size(); j < capacity; ++j) {
+            writeNBytes(ostream, reinterpret_cast<char *>(padding), sizeof(long));
+        }
         return address;
+    }
+
+    std::string getData() override {
+        throw 1;
+    };
+
+    void setData(std::string &data) override {
+        throw 1;
     }
 
     void addIndex(long address) {
@@ -95,18 +106,23 @@ public:
     ValueHandler(long address, long size) : Handler<Z>(address, size) {}
 
     void read(std::fstream &istream) override {
-        Z *d = reinterpret_cast<Z *>(readNBytes(istream, this->address, sizeof(Z) / sizeof(char)));
+        Z *d = reinterpret_cast<Z *>(DataTypeHandler::readNBytes(istream, this->address, sizeof(Z) / sizeof(char)));
 
         this->data = *d;
     }
 
     long write(std::fstream &ostream, Allocator &allocator) override {
-        writeNBytes(ostream, this->address, reinterpret_cast<char *>(&this->data), sizeof(Z));
+        this->address = allocator.allocate(ostream, sizeof(long));
+        DataTypeHandler::writeNBytes(ostream, this->address, reinterpret_cast<char *>(&this->data), sizeof(Z));
         return this->address;
     }
 
-    void setData(Z data) {
-        data = data;
+    void setData(std::string &data) override {
+        this->data = TableAttribute<Z>::fromString(data);
+    }
+
+    std::string getData() override {
+        return TableAttribute<Z>::toString(this->data);
     }
 };
 
@@ -141,6 +157,14 @@ public:
         this->data = ptr;
         this->size = size;
     }
+
+    std::string getData() override {
+        throw 1;
+    }
+
+    void setData(std::string &data) override {
+        throw 1;
+    }
 };
 
 class StringHandler : public Handler<std::string> {
@@ -165,6 +189,10 @@ public:
 
     void setData(std::string &str) {
         this->data = str;
+    }
+
+    std::string getData() override {
+        throw 1;
     }
 };
 

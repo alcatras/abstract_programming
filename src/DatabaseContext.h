@@ -15,7 +15,7 @@ class DatabaseContext {
     TableHandler tableHandler;
 
 public:
-    DatabaseContext() : indexFile("index.bin"), dataFile("data.bin"), tableHandler(indexFile){
+    DatabaseContext() : indexFile("index.bin"), dataFile("data.bin"), tableHandler(indexFile) {
 
     }
 

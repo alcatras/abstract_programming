@@ -15,6 +15,10 @@ public:
 
     virtual long write(std::fstream &ostream, Allocator &allocator) = 0;
 
+    virtual std::string getData() = 0;
+
+    virtual void setData(std::string &data) = 0;
+
 protected:
     char *readNBytes(std::fstream &stream, long address, long count) {
         stream.seekg(address);

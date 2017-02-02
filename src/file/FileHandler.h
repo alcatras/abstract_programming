@@ -25,11 +25,11 @@ public:
         fstream.close();
     }
 
-    void read(std::unique_ptr<DataTypeHandler> &reader) {
+    void read(DataTypeHandler* reader) {
         reader->read(fstream);
     }
 
-    long write(std::unique_ptr<DataTypeHandler> &writer) {
+    long write(DataTypeHandler* writer) {
         writer->write(fstream, allocator);
     }
 };

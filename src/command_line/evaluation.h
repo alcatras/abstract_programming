@@ -195,22 +195,26 @@ namespace et {
                 std::cout << *it << std::endl;
             }
 
-            std::unique_ptr<TableDefinition> table = context->getTableHandler().getTableByName(s);
+            std::unique_ptr<TableDefinition>& table = context->getTableHandler().getTableByName(insert_data->table_name);
 
-            auto index_handler = std::unique_ptr<DataTypeHandler>(new IndexHandler((*table).indexPosition));
-            auto index_file = context->getIndexFile();
-            auto data_file = context->getDataFile();
+            IndexHandler index_handler(table->indexPosition);
+            auto &index_file = context->getIndexFile();
+            auto &data_file = context->getDataFile();
 
-            for (int i = 0; i < (*table).attributes.size(); ++i){
-                auto attr_handler = std::unique_ptr<DataTypeHandler>((*(*table).attributes.at(i)).getHandler());
-                std::string attr_value = insert_data->values.at(i);
-                (*attr_handler).setData(attr_value);
-                long address = data_file.write(attr_handler);   //TODO czy index nie mial przechowywac adresu poczatku wiersza? po co nam adresy kazdego pola w bazie
+            for (unsigned i = 0; i < table->attributes.size(); ++i) {
+                DataTypeHandler* attr_handler = table->attributes[i]->getHandler();
+                std::string attr_value = insert_data->values[i];
+                attr_handler->setData(attr_value);
+                long addr = data_file.write(attr_handler);
+                if (table->indexPosition == -1) {
+                    table->indexPosition = addr;
+                }
+                delete attr_handler;
             }
 
-            index_file.read(index_handler);
-            (*index_handler).addIndex(address);
-            (*table).indexPosition = context->getIndexFile().write(index_handler);
+            index_file.read(&index_handler);
+            reinterpret_cast<IndexHandler *>(&index_handler)->addIndex(table->indexPosition);
+            table->indexPosition = context->getIndexFile().write(&index_handler);
 
             delete *data;
         };
